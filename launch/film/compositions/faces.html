@@ -1,0 +1,36 @@
+<template>
+  <style>
+    @font-face { font-family: "Host Grotesk"; src: url("assets/fonts/HostGrotesk.woff2") format("woff2"); font-weight: 300 800; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0d0d0c url("assets/footage/rubbed-end.jpg") center / cover; font-family: "Host Grotesk"; }
+    .panel { position: absolute; top: 0; width: 640px; height: 1080px; overflow: hidden; }
+    .panel video { position: absolute; left: 0; top: 0; width: 640px; height: 1080px; object-fit: cover; }
+    #faces-p1 { left: 0; } #faces-p2 { left: 640px; } #faces-p3 { left: 1280px; }
+    .line { position: absolute; left: 160px; bottom: 132px; color: #fff; font-weight: 600; font-size: 76px; letter-spacing: -0.025em; line-height: 1; text-shadow: 0 2px 18px rgba(13, 13, 12, 0.35); }
+    #faces-sun { position: absolute; left: 1560px; top: 470px; width: 120px; height: 120px; margin: -60px 0 0 -60px; border-radius: 50%; background: #ffffff; }
+  </style>
+  <div data-hf-id="hf-cmg7" id="root" data-composition-id="faces" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-4ieq" id="faces-p1" class="panel"><video data-hf-id="hf-2jyh" id="faces-v1" class="clip" src="assets/footage/mirror.mp4" data-start="0" data-duration="2.8" data-media-start="0" data-track-index="0" muted playsinline></video></div>
+    <div data-hf-id="hf-0kap" id="faces-p2" class="panel"><video data-hf-id="hf-3dim" id="faces-v2" class="clip" src="assets/footage/cast.mp4" data-start="0" data-duration="2.8" data-media-start="0" data-track-index="0" muted playsinline></video></div>
+    <div data-hf-id="hf-zsmw" id="faces-p3" class="panel"><video data-hf-id="hf-8s7k" id="faces-v3" class="clip" src="assets/footage/smear.mp4" data-start="0" data-duration="2.8" data-media-start="0" data-track-index="0" muted playsinline></video></div>
+    <p data-hf-id="hf-1bo9" id="faces-yes" class="line">Usually, yes.</p>
+    <p data-hf-id="hf-j0og" id="faces-skip" class="line">So people skip it.</p>
+    <div data-hf-id="hf-wnnc" id="faces-sun"></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    ["#faces-p1", "#faces-p2", "#faces-p3"].forEach((p, i) => {
+      tl.fromTo(p, { clipPath: "inset(0% 0% 100% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.45, ease: "expo.out" }, i * 0.2);
+      tl.fromTo(p + " video", { scale: 1.12 }, { scale: 1, duration: 1.4, ease: "expo.out" }, i * 0.2);
+    });
+    const wipeIn = (s, at, d = 0.6) => [s].flat().forEach((q) => document.querySelectorAll(q).forEach((el) => {
+      if (!el.children.length) el.innerHTML = el.textContent.trim().split(" ").map((w) => `<span style="display:inline-block">${w}</span>`).join(" ");
+      const parts = el.querySelector("span[style]") ? [...el.children] : [el];
+      tl.fromTo(parts, { yPercent: 60, opacity: 0 }, { yPercent: 0, opacity: 1, duration: d, ease: "expo.out", stagger: 0.035 }, at);
+    }));
+    wipeIn("#faces-yes", 0.12);
+    tl.to("#faces-yes", { opacity: 0, y: -24, duration: 0.2, ease: "power3.in" }, 0.95);
+    wipeIn("#faces-skip", 1.15);
+    tl.fromTo("#faces-sun", { scale: 0 }, { scale: 38, duration: 0.5, ease: "power2.inOut" }, 2.28);
+    window.__timelines["faces"] = tl;
+  </script>
+</template>

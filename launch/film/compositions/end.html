@@ -1,0 +1,43 @@
+<template>
+  <style>
+    @font-face { font-family: "Host Grotesk"; src: url("assets/fonts/HostGrotesk.woff2") format("woff2"); font-weight: 300 800; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #5a3a2b; color: #ffffff; font-family: "Host Grotesk"; }
+    #end-sun { position: absolute; inset: 0; overflow: hidden; }
+    #end-sun video { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; object-fit: cover; }
+    #end-claim { position: absolute; left: 120px; bottom: 120px; width: 820px; text-wrap: balance; font-size: 92px; font-weight: 600; letter-spacing: -0.05em; line-height: 0.98; text-shadow: 0 2px 30px rgba(13,13,12,.35); }
+    #end-lock { position: absolute; inset: 0; }
+    #end-mark { position: absolute; left: 620px; top: 360px; width: 220px; height: 220px; color: #ffffff; }
+    #end-mark svg { width: 100%; height: 100%; overflow: visible; }
+    #end-word { position: absolute; left: 880px; top: 362px; font-size: 216px; font-weight: 600; letter-spacing: -0.045em; line-height: 0.96; }
+    #end-url { position: absolute; left: 620px; top: 652px; font-size: 72px; font-weight: 600; letter-spacing: -0.02em; }
+    #end-by { position: absolute; left: 620px; top: 744px; font-size: 48px; font-weight: 500; color: rgba(255,255,255,.75); }
+  </style>
+  <div data-hf-id="hf-gwfo" id="root" data-composition-id="end" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-lt21" id="end-sun"><video data-hf-id="hf-1yd6" id="end-sunv" class="clip" src="assets/footage/sun-skin.mp4" data-start="0" data-duration="2.2" data-media-start="0" data-track-index="0" muted playsinline></video></div>
+    <p data-hf-id="hf-9n7z" id="end-claim">Find the sunscreen that disappears on you.</p>
+    <div data-hf-id="hf-sd2c" id="end-lock">
+    <div data-hf-id="hf-d956" id="end-mark"><svg data-hf-id="hf-ulu9" viewBox="0 0 24 24"><circle data-hf-id="hf-xz7q" cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5" /><path data-hf-id="hf-xscs" d="M12 2 A10 10 0 0 0 12 22 Z" fill="currentColor" fill-opacity="0.15" /><path data-hf-id="hf-o9uz" d="M12 1.5 V22.5" stroke="#ffb21a" stroke-width="2" stroke-linecap="round" /></svg></div>
+    <p data-hf-id="hf-05zk" id="end-word">Veil</p>
+    <p data-hf-id="hf-ltdx" id="end-url">veil-skin.vercel.app</p>
+    <p data-hf-id="hf-k1z9" id="end-by">Built on the YouCam API</p>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const wipeIn = (s, at, d = 0.6) => [s].flat().forEach((q) => document.querySelectorAll(q).forEach((el) => {
+      if (!el.children.length) el.innerHTML = el.textContent.trim().split(" ").map((w) => `<span style="display:inline-block">${w}</span>`).join(" ");
+      const parts = el.querySelector("span[style]") ? [...el.children] : [el];
+      tl.fromTo(parts, { yPercent: 60, opacity: 0 }, { yPercent: 0, opacity: 1, duration: d, ease: "expo.out", stagger: 0.035 }, at);
+    }));
+    tl.fromTo("#end-sun", { scale: 1 }, { scale: 1.04, duration: 2.2, ease: "none" }, 0);
+    wipeIn("#end-claim", 0.1, 0.7);
+    tl.set(["#end-claim", "#end-sun"], { opacity: 0 }, 2.2);
+    tl.set("#end-lock", { opacity: 0 }, 0);
+    tl.set("#end-lock", { opacity: 1 }, 2.2);
+    tl.fromTo("#end-mark", { scale: 0.7, rotation: -30 }, { scale: 1, rotation: 0, duration: 0.6, ease: "expo.out" }, 2.2);
+    wipeIn("#end-word", 2.24);
+    wipeIn("#end-url", 2.26);
+    wipeIn("#end-by", 2.28);
+    window.__timelines["end"] = tl;
+  </script>
+</template>

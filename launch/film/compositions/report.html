@@ -1,0 +1,120 @@
+<template>
+  <style>
+    @font-face { font-family: "Host Grotesk"; src: url("assets/fonts/HostGrotesk.woff2") format("woff2"); font-weight: 300 800; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #ffffff; color: #0d0d0c; font-family: "Host Grotesk"; font-variant-numeric: tabular-nums; }
+    #rep-photo { position: absolute; left: 560px; top: 40px; width: 800px; height: 1000px; border-radius: 28px; overflow: hidden; box-shadow: 0 0 0 1px rgba(13,13,12,.06), 0 24px 48px -16px rgba(13,13,12,.18); }
+    #rep-photo img { position: absolute; left: 0; top: 0; width: 800px; height: 1000px; object-fit: cover; }
+    #rep-sw { clip-path: polygon(0 0, 452px 0, 348px 1000px, 0 1000px); }
+    #rep-rings { position: absolute; left: 0; top: 0; width: 800px; height: 1000px; overflow: visible; }
+    .chip { position: absolute; left: 32px; top: 32px; padding: 8px 18px; border-radius: 999px; background: rgba(13,13,12,.55); color: #fff; font-size: 30px; font-weight: 500; }
+    #rep-line { position: absolute; left: 396px; top: -50px; width: 8px; height: 1100px; border-radius: 4px; background: #ffb21a; }
+    .tag { position: absolute; bottom: 36px; color: #fff; font-size: 40px; font-weight: 600; letter-spacing: -0.01em; text-shadow: 0 1px 12px rgba(13,13,12,.4); }
+    #rep-tsw { left: 40px; } #rep-tbare { right: 40px; }
+    #rep-cap { position: absolute; left: 1000px; top: 380px; width: 800px; font-size: 96px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; }
+    #rep-field { position: absolute; inset: 0; }
+    .half { position: absolute; inset: 0; }
+    #rep-fl { background: #463b33; clip-path: polygon(0 0, 1017px 0, 903px 1080px, 0 1080px); }
+    #rep-fr { background: #5d544d; clip-path: polygon(1017px 0, 1920px 0, 1920px 1080px, 903px 1080px); }
+    #rep-fline { position: absolute; left: 956px; top: -110px; width: 8px; height: 1300px; border-radius: 4px; background: #ffb21a; }
+    .lab { position: absolute; top: 96px; font-size: 56px; font-weight: 500; color: rgba(255,255,255,.78); letter-spacing: -0.01em; }
+    #rep-lexp { left: 120px; } #rep-lmea { right: 120px; text-align: right; }
+    .stack { position: absolute; right: 120px; bottom: 96px; text-align: right; color: #fff; }
+    .stack .pr { font-size: 44px; font-weight: 500; color: rgba(255,255,255,.78); }
+    .stack .dn { margin-top: 16px; font-size: 96px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; }
+    .stack .dn span { font-size: 48px; font-weight: 500; letter-spacing: -0.01em; color: rgba(255,255,255,.78); }
+    .stack .wd { margin-top: 8px; font-size: 300px; font-weight: 600; letter-spacing: -0.06em; line-height: 0.86; }
+    .stack .sy { margin-top: 24px; font-size: 60px; font-weight: 500; letter-spacing: -0.015em; }
+    #rep-shelf { position: absolute; left: 160px; top: 96px; width: 1600px; height: 900px; }
+    #rep-shead { font-size: 64px; font-weight: 500; color: #6b6a66; letter-spacing: -0.03em; line-height: 1; }
+    #rep-rows { position: relative; margin-top: 56px; height: 720px; }
+    .row { position: absolute; left: 0; width: 1600px; height: 232px; display: flex; align-items: center; gap: 48px; border-top: 2px solid #e7e6e2; }
+    .row .nm { font-size: 112px; font-weight: 600; letter-spacing: -0.05em; }
+    .row .mt { font-size: 30px; color: #6b6a66; margin-top: 6px; }
+    .row .rt { margin-left: auto; display: flex; align-items: baseline; gap: 28px; }
+    .row .vd { font-size: 112px; font-weight: 600; letter-spacing: -0.05em; }
+    .row .dv { font-size: 56px; color: #6b6a66; font-weight: 500; }
+    .row .bar { position: absolute; left: -48px; top: 50px; width: 12px; height: 132px; border-radius: 5px; background: #ffb21a; transform-origin: 50% 50%; }
+  </style>
+  <div data-hf-id="hf-37zh" id="root" data-composition-id="report" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-n18p" id="rep-photo">
+      <img data-hf-id="hf-6afq" id="rep-bare" src="assets/app/elder-bare.jpg" alt="" />
+      <img data-hf-id="hf-2po6" id="rep-sw" src="assets/app/elder-swiped.jpg" alt="" />
+      <svg data-hf-id="hf-teqz" id="rep-rings" viewBox="0 0 800 1000"><circle data-hf-id="hf-a2w3" id="rep-ring1" cx="192" cy="617" r="64" fill="none" stroke="#ffb21a" stroke-width="6" /><circle data-hf-id="hf-9r18" id="rep-ring2" cx="615" cy="553" r="64" fill="none" stroke="#ffffff" stroke-width="6" stroke-dasharray="14 10" /></svg>
+      <p data-hf-id="hf-rqp9" class="chip">Sample test</p>
+            <div data-hf-id="hf-eqz9" id="rep-line"></div>
+      <p data-hf-id="hf-vs6v" id="rep-tsw" class="tag">Swiped</p>
+      <p data-hf-id="hf-vekv" id="rep-tbare" class="tag">Bare</p>
+    </div>
+    <p data-hf-id="hf-c3fd" id="rep-cap">Her bare cheek is the control.</p>
+    <div data-hf-id="hf-sfa1" id="rep-shelf">
+      <p data-hf-id="hf-jz8k" id="rep-shead">Then it ranks the shelf for her skin.</p>
+      <div data-hf-id="hf-jem0" id="rep-rows">
+        <div data-hf-id="hf-tunu" class="row" id="rep-r0"><p data-hf-id="hf-niwv" class="nm">Clearweight Gel 40</p><div data-hf-id="hf-jcrm" class="rt"><p data-hf-id="hf-rzp9" class="dv">1.1</p><p data-hf-id="hf-ph6o" class="vd">Invisible</p></div><div data-hf-id="hf-pgan" class="bar" id="rep-sun"></div></div>
+        <div data-hf-id="hf-xsrv" class="row" id="rep-r1"><p data-hf-id="hf-h8r7" class="nm">Daylight Mineral 30</p><div data-hf-id="hf-y69y" class="rt"><p data-hf-id="hf-4j3p" class="dv">5.5</p><p data-hf-id="hf-w9zl" class="vd">Visible</p></div></div>
+        <div data-hf-id="hf-mxa8" class="row" id="rep-r2"><p data-hf-id="hf-bjnn" class="nm">Bare Zinc 50</p><div data-hf-id="hf-ykkz" class="rt"><p data-hf-id="hf-qc5x" class="dv">8.4</p><p data-hf-id="hf-pfeo" class="vd">Ghost</p></div></div>
+      </div>
+    </div>
+    <div data-hf-id="hf-zc4l" id="rep-field">
+      <div data-hf-id="hf-sfgy" id="rep-bg" class="half">
+        <div data-hf-id="hf-5do5" id="rep-fl" class="half"></div>
+        <div data-hf-id="hf-jj3f" id="rep-fr" class="half"></div>
+        <div data-hf-id="hf-p79t" id="rep-fline"></div>
+      </div>
+      <p data-hf-id="hf-3zvh" id="rep-lexp" class="lab">Where her cheek should be</p>
+      <p data-hf-id="hf-ub5x" id="rep-lmea" class="lab">Where it is</p>
+      <div data-hf-id="hf-d1zs" class="stack">
+        <p data-hf-id="hf-sydy" id="rep-pr" class="pr">Bare Zinc 50 on her right cheek</p>
+        <p data-hf-id="hf-cza7" id="rep-dn" class="dn">8.4 <span data-hf-id="hf-g6cu">ΔE00</span></p>
+        <p data-hf-id="hf-2qcw" id="rep-wd" class="wd">Ghost.</p>
+        <p data-hf-id="hf-1d2y" id="rep-sy" class="sy">Anyone would see it.</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const wipeIn = (s, at, d = 0.6) => [s].flat().forEach((q) => document.querySelectorAll(q).forEach((el) => {
+      if (!el.children.length) el.innerHTML = el.textContent.trim().split(" ").map((w) => `<span style="display:inline-block">${w}</span>`).join(" ");
+      const parts = el.querySelector("span[style]") ? [...el.children] : [el];
+      tl.fromTo(parts, { yPercent: 60, opacity: 0 }, { yPercent: 0, opacity: 1, duration: d, ease: "expo.out", stagger: 0.035 }, at);
+    }));
+
+    const sw = document.querySelector("#rep-sw");
+    const line = document.querySelector("#rep-line");
+    const split = { x: -60 };
+    const draw = () => {
+      sw.style.clipPath = `polygon(0px 0px, ${split.x + 52}px 0px, ${split.x - 52}px 1000px, 0px 1000px)`;
+      line.style.transform = `translateX(${split.x - 400}px) rotate(6deg)`;
+    };
+    draw();
+    tl.fromTo("#rep-photo img", { scale: 1.12 }, { scale: 1, duration: 1.4, ease: "expo.out" }, 0);
+    wipeIn("#rep-tbare", 0.3, 0.4);
+    tl.fromTo(split, { x: -60 }, { x: 400, duration: 0.7, ease: "power3.inOut", onUpdate: draw }, 1.0);
+    wipeIn("#rep-tsw", 1.3, 0.4);
+    tl.fromTo("#rep-photo", { x: 0 }, { x: -440, duration: 0.6, ease: "power3.inOut" }, 1.45);
+    wipeIn("#rep-cap", 1.6);
+    tl.fromTo(["#rep-ring1", "#rep-ring2"], { scale: 0.4, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.5, ease: "expo.out", stagger: 0.22 }, 2.3);
+
+    tl.set("#rep-field", { opacity: 0 }, 0);
+    tl.set("#rep-field", { opacity: 1 }, 3.4);
+    tl.fromTo("#rep-bg", { scale: 1 }, { scale: 1.035, duration: 2.8, ease: "none" }, 3.4);
+    tl.fromTo("#rep-fl", { x: 60 }, { x: 0, duration: 0.6, ease: "expo.out" }, 3.4);
+    tl.fromTo("#rep-fr", { x: -60 }, { x: 0, duration: 0.6, ease: "expo.out" }, 3.4);
+    tl.fromTo("#rep-fline", { scaleY: 0, rotation: 6 }, { scaleY: 1, rotation: 6, duration: 0.4, ease: "expo.out" }, 3.4);
+    tl.fromTo(["#rep-lexp", "#rep-lmea"], { opacity: 0 }, { opacity: 1, duration: 0.3 }, 3.5);
+    wipeIn("#rep-pr", 3.5);
+    wipeIn("#rep-dn", 3.7, 0.4);
+    wipeIn("#rep-wd", 4.0, 0.5);
+    wipeIn("#rep-sy", 4.6);
+    tl.set("#rep-field", { opacity: 0 }, 6.2);
+    tl.set("#rep-photo", { opacity: 0 }, 3.4);
+    tl.set("#rep-cap", { opacity: 0 }, 3.4);
+    wipeIn("#rep-shead", 6.3);
+    [2, 1, 0].forEach((slot, i) => {
+      tl.fromTo("#rep-r" + i, { y: slot * 232, opacity: 0 }, { y: slot * 232, opacity: 1, duration: 0.3, ease: "power2.out" }, 6.45 + (2 - slot) * 0.1);
+      tl.to("#rep-r" + i, { opacity: 0, x: 40, duration: 0.15, ease: "power3.in" }, 7.3 + slot * 0.03);
+      tl.fromTo("#rep-r" + i, { y: i * 232, x: -40, opacity: 0 }, { y: i * 232, x: 0, opacity: 1, duration: 0.45, ease: "expo.out", immediateRender: false }, 7.4 + i * 0.08);
+    });
+    tl.fromTo("#rep-sun", { scaleY: 0 }, { scaleY: 1, duration: 0.4, ease: "expo.out" }, 7.75);
+    window.__timelines["report"] = tl;
+  </script>
+</template>

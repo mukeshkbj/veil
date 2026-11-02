@@ -1,0 +1,87 @@
+<template>
+  <style>
+    @font-face { font-family: "Host Grotesk"; src: url("assets/fonts/HostGrotesk.woff2") format("woff2"); font-weight: 300 800; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #ffffff; color: #0d0d0c; font-family: "Host Grotesk"; font-variant-numeric: tabular-nums; }
+    #pay-photo { position: absolute; left: 120px; top: 40px; width: 800px; height: 1000px; border-radius: 28px; overflow: hidden; box-shadow: 0 0 0 1px rgba(13,13,12,.06), 0 24px 48px -16px rgba(13,13,12,.18); }
+    #pay-photo img { position: absolute; left: 0; top: 0; width: 800px; height: 1000px; object-fit: cover; }
+    #pay-line { position: absolute; left: 0; top: -50px; width: 8px; height: 1100px; border-radius: 4px; background: #ffb21a; }
+    .chip { position: absolute; left: 32px; top: 32px; padding: 8px 18px; border-radius: 999px; background: rgba(13,13,12,.55); color: #fff; font-size: 30px; font-weight: 500; }
+    .tag { position: absolute; bottom: 36px; color: #fff; font-size: 40px; font-weight: 600; letter-spacing: -0.01em; text-shadow: 0 1px 12px rgba(13,13,12,.4); }
+    #pay-tsw { left: 40px; } #pay-tbare { right: 40px; }
+    #pay-ask { position: absolute; left: 1000px; top: 380px; width: 800px; font-size: 96px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; }
+    #pay-prod { position: absolute; left: 1000px; top: 600px; width: 800px; font-size: 52px; font-weight: 500; color: #6b6a66; letter-spacing: -0.015em; }
+    #pay-field { position: absolute; inset: 0; }
+    .half { position: absolute; inset: 0; }
+    #pay-fl { background: #4a423b; clip-path: polygon(0 0, 1017px 0, 903px 1080px, 0 1080px); }
+    #pay-fr { background: #4c433d; clip-path: polygon(1017px 0, 1920px 0, 1920px 1080px, 903px 1080px); }
+    #pay-fline { position: absolute; left: 956px; top: -110px; width: 8px; height: 1300px; border-radius: 4px; background: #ffb21a; }
+    #pay-wd { font-size: 200px; }
+    .lab { position: absolute; top: 96px; font-size: 56px; font-weight: 500; color: rgba(255,255,255,.78); letter-spacing: -0.01em; }
+    #pay-lexp { left: 120px; } #pay-lmea { right: 120px; text-align: right; }
+    .stack { position: absolute; right: 120px; bottom: 96px; text-align: right; color: #fff; }
+    .stack .pr { font-size: 44px; font-weight: 500; color: rgba(255,255,255,.78); }
+    .stack .dn { margin-top: 16px; font-size: 96px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; }
+    .stack .dn span { font-size: 48px; font-weight: 500; letter-spacing: -0.01em; color: rgba(255,255,255,.78); }
+    .stack .wd { margin-top: 8px; font-size: 300px; font-weight: 600; letter-spacing: -0.06em; line-height: 0.86; }
+    .stack .sy { margin-top: 24px; font-size: 60px; font-weight: 500; letter-spacing: -0.015em; }
+  </style>
+  <div data-hf-id="hf-s4vk" id="root" data-composition-id="payoff" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-8vq2" id="pay-photo">
+      <img data-hf-id="hf-jlfr" id="pay-bare" src="assets/app/elder-bare.jpg" alt="" />
+      <img data-hf-id="hf-hz3p" id="pay-sw" src="assets/app/elder-swiped2.jpg" alt="" />
+      <div data-hf-id="hf-zqa4" id="pay-line"></div>
+      <p data-hf-id="hf-rqp9" class="chip">Sample test</p>
+      <p data-hf-id="hf-8y70" id="pay-tsw" class="tag">Swiped</p>
+      <p data-hf-id="hf-yaus" id="pay-tbare" class="tag">Bare</p>
+    </div>
+    <p data-hf-id="hf-5aad" id="pay-ask">One more swipe.</p>
+    <p data-hf-id="hf-epn2" id="pay-prod">Clearweight Gel 40, the top pick</p>
+    <div data-hf-id="hf-tv2u" id="pay-field">
+      <div data-hf-id="hf-ccf7" id="pay-bg" class="half">
+        <div data-hf-id="hf-5g24" id="pay-fl" class="half"></div>
+        <div data-hf-id="hf-gf16" id="pay-fr" class="half"></div>
+        <div data-hf-id="hf-lyem" id="pay-fline"></div>
+      </div>
+      <p data-hf-id="hf-cyva" id="pay-lexp" class="lab">Where her cheek should be</p>
+      <p data-hf-id="hf-wm3i" id="pay-lmea" class="lab">Where it is</p>
+      <div data-hf-id="hf-d1zs" class="stack">
+        <p data-hf-id="hf-woo9" id="pay-pr" class="pr">Clearweight Gel 40 on her right cheek</p>
+        <p data-hf-id="hf-qqy1" id="pay-dn" class="dn">0.7 <span data-hf-id="hf-g6cu">ΔE00</span></p>
+        <p data-hf-id="hf-4nz5" id="pay-wd" class="wd">Invisible.</p>
+        <p data-hf-id="hf-do7i" id="pay-sy" class="sy">Nobody would see it.</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const wipeIn = (s, at, d = 0.6) => [s].flat().forEach((q) => document.querySelectorAll(q).forEach((el) => {
+      if (!el.children.length) el.innerHTML = el.textContent.trim().split(" ").map((w) => `<span style="display:inline-block">${w}</span>`).join(" ");
+      const parts = el.querySelector("span[style]") ? [...el.children] : [el];
+      tl.fromTo(parts, { yPercent: 60, opacity: 0 }, { yPercent: 0, opacity: 1, duration: d, ease: "expo.out", stagger: 0.035 }, at);
+    }));
+    const sw = document.querySelector("#pay-sw");
+    const line = document.querySelector("#pay-line");
+    const split = { x: 780 };
+    const draw = () => {
+      sw.style.clipPath = `polygon(0px 0px, ${split.x + 52}px 0px, ${split.x - 52}px 1000px, 0px 1000px)`;
+      line.style.transform = `translateX(${split.x - 4}px) rotate(6deg)`;
+    };
+    draw();
+    wipeIn("#pay-ask", 0.05);
+    tl.fromTo(split, { x: 0 }, { x: 400, duration: 0.9, ease: "power2.inOut", onUpdate: draw }, 0.1);
+    wipeIn("#pay-prod", 0.3);
+    tl.set("#pay-field", { opacity: 0 }, 0);
+    tl.set("#pay-field", { opacity: 1 }, 1.5);
+    tl.set(["#pay-photo", "#pay-ask", "#pay-prod"], { opacity: 0 }, 1.5);
+    tl.fromTo("#pay-fl", { x: 60 }, { x: 0, duration: 0.6, ease: "expo.out" }, 1.5);
+    tl.fromTo("#pay-fr", { x: -60 }, { x: 0, duration: 0.6, ease: "expo.out" }, 1.5);
+    tl.fromTo("#pay-fline", { scaleY: 0, rotation: 6 }, { scaleY: 1, rotation: 6, duration: 0.4, ease: "expo.out" }, 1.5);
+    tl.fromTo("#pay-bg", { scale: 1 }, { scale: 1.035, duration: 2.5, ease: "none" }, 1.5);
+    tl.fromTo(["#pay-lexp", "#pay-lmea"], { opacity: 0 }, { opacity: 1, duration: 0.3 }, 1.6);
+    wipeIn("#pay-pr", 1.6);
+    wipeIn("#pay-dn", 1.72, 0.45);
+    wipeIn("#pay-wd", 1.9, 0.5);
+    wipeIn("#pay-sy", 2.3);
+    window.__timelines["payoff"] = tl;
+  </script>
+</template>

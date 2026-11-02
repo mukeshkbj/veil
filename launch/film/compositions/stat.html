@@ -1,0 +1,42 @@
+<template>
+  <style>
+    @font-face { font-family: "Host Grotesk"; src: url("assets/fonts/HostGrotesk.woff2") format("woff2"); font-weight: 300 800; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #ffffff; color: #0d0d0c; font-family: "Host Grotesk"; font-variant-numeric: tabular-nums; }
+    .row { position: absolute; left: 160px; display: flex; align-items: flex-end; gap: 48px; }
+    #stat-r1 { top: 150px; } #stat-r2 { top: 560px; }
+    .num { font-weight: 600; letter-spacing: -0.05em; line-height: 0.8; }
+    #stat-n1 { font-size: 300px; width: 640px; } #stat-n2 { font-size: 300px; width: 640px; color: #6b6a66; }
+    .bar { height: 120px; border-radius: 0 60px 60px 0; transform-origin: 0 50%; }
+    #stat-b1 { width: 960px; background: #5a3a2b; margin-bottom: 12px; }
+    #stat-b2 { width: 269px; background: #e1b9a0; margin-bottom: 12px; }
+    .cap { position: absolute; left: 160px; font-size: 56px; font-weight: 500; letter-spacing: -0.01em; line-height: 1.15; }
+    #stat-c1 { top: 410px; } #stat-c2 { top: 820px; color: #6b6a66; }
+    #stat-src { position: absolute; left: 160px; bottom: 72px; font-size: 40px; color: #6b6a66; }
+  </style>
+  <div data-hf-id="hf-g0a9" id="root" data-composition-id="stat" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-eklm" id="stat-r1" class="row"><p data-hf-id="hf-1vnj" id="stat-n1" class="num">25%</p><div data-hf-id="hf-r2rn" id="stat-b1" class="bar"></div></div>
+    <p data-hf-id="hf-zly0" id="stat-c1" class="cap">of skin-of-colour patients name white cast as a sunscreen problem.</p>
+    <div data-hf-id="hf-amhl" id="stat-r2" class="row"><p data-hf-id="hf-cf1e" id="stat-n2" class="num">7%</p><div data-hf-id="hf-ievs" id="stat-b2" class="bar"></div></div>
+    <p data-hf-id="hf-tys4" id="stat-c2" class="cap">of white patients do.</p>
+    <p data-hf-id="hf-1kum" id="stat-src">Journal of Drugs in Dermatology, 2024</p>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const land = (sel, at) => tl.fromTo(sel, { clipPath: "inset(100% -10% -10% -10%)", y: 60 }, { clipPath: "inset(-10% -10% -10% -10%)", y: 0, duration: 0.5, ease: "expo.out" }, at);
+    tl.fromTo("#stat-b1", { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: "power2.out" }, 0.1);
+    land("#stat-n1", 0.1);
+    const wipeIn = (s, at, d = 0.6) => [s].flat().forEach((q) => document.querySelectorAll(q).forEach((el) => {
+      if (!el.children.length) el.innerHTML = el.textContent.trim().split(" ").map((w) => `<span style="display:inline-block">${w}</span>`).join(" ");
+      const parts = el.querySelector("span[style]") ? [...el.children] : [el];
+      tl.fromTo(parts, { yPercent: 60, opacity: 0 }, { yPercent: 0, opacity: 1, duration: d, ease: "expo.out", stagger: 0.035 }, at);
+    }));
+    wipeIn("#stat-c1", 0.35);
+    tl.fromTo("#stat-b2", { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: "power2.out" }, 0.75);
+    land("#stat-n2", 0.75);
+    wipeIn("#stat-c2", 1.0);
+    tl.fromTo("#stat-src", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 1.1);
+    tl.to(["#stat-b1", "#stat-b2"], { scaleX: 0, duration: 0.3, ease: "power3.in", stagger: 0.05 }, 2.62);
+    tl.to(["#stat-n1", "#stat-n2", "#stat-c1", "#stat-c2", "#stat-src"], { opacity: 0, y: -30, duration: 0.3, ease: "power3.in", stagger: 0.02 }, 2.6);
+    window.__timelines["stat"] = tl;
+  </script>
+</template>

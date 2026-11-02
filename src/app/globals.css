@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+:root {
+  --paper: oklch(1 0 0);
+  --slide: oklch(0.963 0.003 90);
+  --rule: oklch(0.915 0.004 90);
+  --graphite: oklch(0.54 0.006 90);
+  --ink-soft: oklch(0.43 0.006 90);
+  --ink: oklch(0.17 0.004 90);
+  --wax: oklch(0.82 0.165 74);
+  --wax-ink: oklch(0.5 0.11 62);
+  --wax-wash: oklch(0.82 0.165 74 / 0.18);
+  --shadow-lift: 0 0 0 1px oklch(0.17 0.004 90 / 0.06), 0 1px 2px -1px oklch(0.17 0.004 90 / 0.08), 0 12px 32px -12px oklch(0.17 0.004 90 / 0.16);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: oklch(0.16 0.004 90);
+    --slide: oklch(0.21 0.005 90);
+    --rule: oklch(0.29 0.005 90);
+    --graphite: oklch(0.68 0.006 90);
+    --ink-soft: oklch(0.78 0.005 90);
+    --ink: oklch(0.97 0.003 90);
+    --wax: oklch(0.82 0.15 74);
+    --wax-ink: oklch(0.84 0.13 76);
+    --wax-wash: oklch(0.82 0.15 74 / 0.16);
+    --shadow-lift: 0 0 0 1px oklch(1 0 0 / 0.08);
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-slide: var(--slide);
+  --color-rule: var(--rule);
+  --color-graphite: var(--graphite);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink: var(--ink);
+  --color-wax: var(--wax);
+  --color-wax-ink: var(--wax-ink);
+  --color-wax-wash: var(--wax-wash);
+  --font-sans: var(--font-grotesk);
+  --font-mono: var(--font-grotesk);
+  --shadow-lift: var(--shadow-lift);
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-move: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01";
+}
+
+::selection {
+  background: var(--wax-wash);
+  color: var(--ink);
+}
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--wax);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@utility figure {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+@utility label {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 500;
+  color: var(--graphite);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+html.js [data-split],
+html.js [data-rise],
+html.js [data-intro] {
+  visibility: hidden;
+  animation: reveal 0s 4s forwards;
+}
+
+@keyframes reveal {
+  to {
+    visibility: visible;
+  }
+}

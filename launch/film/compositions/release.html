@@ -1,0 +1,17 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0d0d0c; }
+    #rel-cam { position: absolute; inset: 0; transform-origin: 56% 36%; }
+    #rel-cam video { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; object-fit: cover; }
+  </style>
+  <div data-hf-id="hf-cpq8" id="root" data-composition-id="release" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-091c" id="rel-cam">
+      <video data-hf-id="hf-0jxa" id="rel-v" class="clip" src="assets/footage/mirror-check.mp4" data-start="0" data-duration="3" data-media-start="0.9" data-track-index="0" muted playsinline></video>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#rel-cam", { scale: 1.0 }, { scale: 1.07, duration: 3, ease: "power1.out" }, 0);
+    window.__timelines["release"] = tl;
+  </script>
+</template>
