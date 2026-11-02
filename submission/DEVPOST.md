@@ -90,3 +90,43 @@ next.js, react, typescript, tailwindcss, youcam-api, youcam-skin-analysis, youca
 ## Video demo link
 
 Upload `submission/veil-demo.mp4` to YouTube as Public or Unlisted, then paste the YouTube URL.
+
+## Text description (features, functionality, consumer and retail value)
+
+Veil is a web app that tells you whether a sunscreen will leave a white cast on your own face, before you buy it.
+
+How it works: you take a bare photo, swipe the sunscreen on one cheek, and take a second photo. The bare cheek is the control. It shares the light, the camera and the skin, so Veil can remove the room from the reading and measure only the cast. The result is a verdict (Invisible, Faint, Visible or Ghost), the colour difference in ΔE00 with a 90% range, and a cast map of where the film sits. If the light or your head moved between photos, Veil refuses the photo and says why, instead of giving a wrong answer.
+
+YouCam does the skin work. Skin analysis returns masks for spots, redness and acne, so Veil reads only clean skin. Skin tone analysis returns the skin colour and its ITA depth, which sets the meter and ranks the shelf. Makeup try-on shows any product on the whole face, and also plants a white film of known strength so Veil can test itself: it must find the planted film, and a second bare photo must read Invisible.
+
+From one swipe, Veil predicts every other product on the shelf for that person's skin, scaled to how thickly they applied. When two products could both vanish, an agent asks for the one extra swipe that decides. The winner goes to the bag in one tap.
+
+Consumer value: people with brown and Black skin are three to four times more likely to name white cast as a reason they struggle with sunscreen. Veil replaces the back-of-the-hand test with a reading on your own face, so you find a sunscreen you will actually wear.
+
+Retail value: a cast is invisible on a product page and on a pale tester arm, so it shows up as returns and abandoned products. Veil works at the counter (swipe a tester, see the shelf ranked for your skin) and on the product page (try-on and Add to bag). Only the bare photo uses API units, about 29. Swipes are measured in the browser for free.
+
+## Code repository
+
+https://github.com/mukeshkbj/veil
+
+## Was there a moment where the API surprised you?
+
+The good surprise was how much the makeup try-on could do beyond showing a product. A foundation render with smoothing turned off is a controlled, known film on a real face. That let us use it as a measuring instrument: Veil plants a white film of known strength with try-on and must find it again. That planted test became our main proof that the meter works, and it was not a use we expected when we started. The skin-analysis masks were the other good surprise. They come back as one alpha mask per concern, which is exactly the shape you need to drop flagged pixels from a colour reading.
+
+The frustrating part was getting started without live output. Every task is asynchronous (upload a file, PUT it to a signed URL, start a task, poll), and we built most of the app before we could watch a real response. We worked from the OpenAPI specs and wrote a mock server that follows the same file and task flow, so the whole live path could be tested end to end. With hindsight, a public sandbox that returns sample responses would make the first hour of every project much faster.
+
+## Industries or use cases nobody is talking about yet
+
+- **Cosmetic R&D and formulation QA.** Brands test white cast on small in-person panels. The same bare-cheek control and skin-tone analysis could run a remote cast panel across hundreds of skin tones before launch.
+- **Shade-range gap analysis.** Anonymised skin-tone results from shoppers show a brand which depths its range does not serve, before the reviews do.
+- **Medical products in skin tones.** Bandages, wound dressings, prosthetic covers and hearing aids are now sold in skin tones. Skin-tone analysis could pick the closest match from a photo.
+- **Remote split-face clinical studies.** Dermatology trials already use half-face designs. A phone flow with skin-analysis masks and a light gate could collect usable data from home.
+- **Film, TV and stage makeup continuity.** Checking that a base reads the same across scenes and lighting is the same measurement Veil makes.
+
+## Where did you hit a wall technically, and how did you work around it?
+
+- **Alignment.** Our first test on a photo with no sunscreen read 1.8 ΔE00 instead of 0, because the cheek patches did not land on the same skin in both photos. Face landmarks were off by about 25 pixels, because a white film on one cheek pulls the face mesh. We now use the landmarks only for a first fit, then match skin texture at both brows and the nose bridge, which the sunscreen never touches. The null test now reads 0.0 to 0.2.
+- **Dark skin in dim light.** An additive light correction under-corrected dark skin, so a cloud could look like a cast. Light scales colour, so we moved the correction to multiplicative, in linear RGB.
+- **A self-test that lied.** Our first planted test compared a dimmed photo with an undimmed truth, so the cloud leaked into the result. It now measures the truth in the same light as the test.
+- **Bad photos.** A photo lit from a new side can fake a cast. Veil checks the light balance on the forehead between photos and refuses the photo when it moved more than 6%, with the reason.
+- **Building without live responses.** We wrote a mock YouCam server and replay data in the documented response shapes, plus `npm run capture`, which swaps in recorded real responses once a key is set.
